@@ -1,0 +1,22 @@
+elasticsearch:
+  host: http://localhost
+  port: 9200
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+      ddl-auto:
+        update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: ${TEST_DATABASE_URL:jdbc:mysql://localhost:3306/test?useUnicode=true&character_set_server=utf8mb4}
+    username: ${TEST_DATABASE_USERNAME:root}
+    password: ${TEST_DATABASE_PASSWORD:YourRootPassword}
+    driverClassName: com.mysql.cj.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+
