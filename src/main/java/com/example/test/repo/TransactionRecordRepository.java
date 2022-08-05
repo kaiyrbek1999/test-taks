@@ -16,13 +16,13 @@ public interface TransactionRecordRepository extends JpaRepository<TransactionRe
             "from transaction_record tr\n" +
             "         join transaction_record_data trd on tr.id = trd.transaction_record_id\n" +
             "where tr.created_at > UNIX_TIMESTAMP(:fromTime) AND\n" +
-            "      UNIX_TIMESTAMP(:toTime) < tr.created_at\n" +
+            "      UNIX_TIMESTAMP(:toTime) > tr.created_at\n" +
             "   or tr.updated_at > UNIX_TIMESTAMP(:fromTime) AND\n" +
-            "      UNIX_TIMESTAMP(:toTime) < tr.updated_at\n" +
+            "      UNIX_TIMESTAMP(:toTime) > tr.updated_at\n" +
             "   or trd.created_at > UNIX_TIMESTAMP(:fromTime) AND\n" +
-            "      UNIX_TIMESTAMP(:toTime) < trd.created_at\n" +
+            "      UNIX_TIMESTAMP(:toTime) > trd.created_at\n" +
             "   or trd.updated_at > UNIX_TIMESTAMP(:fromTime) AND\n" +
-            "      UNIX_TIMESTAMP(:toTime) < trd.updated_at", nativeQuery = true)
+            "      UNIX_TIMESTAMP(:toTime) > trd.updated_at", nativeQuery = true)
     List<TransactionRecord> findRecordsByCreatedOrUpdatedTime(@Param("fromTime") Timestamp fromTime,
                                                               @Param("toTime") Timestamp toTime);
 }
