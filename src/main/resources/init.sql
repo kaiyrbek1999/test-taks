@@ -1,4 +1,6 @@
-create table transaction_record
+create database if not exists test;
+
+create table if not exists transaction_record
 (
     id        int          not null
         primary key,
@@ -9,7 +11,7 @@ create table transaction_record
     updated_at datetime     null
 );
 
-create table transaction_record_data
+create table if not exists transaction_record_data
 (
     id                    int           not null
         primary key,
